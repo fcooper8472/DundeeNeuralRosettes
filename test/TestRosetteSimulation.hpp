@@ -267,7 +267,7 @@ public:
           //simulator.AddCellPopulationBoundaryCondition(p_boundary_condition);
 
             /* We then set an end time and run the simulation */
-            simulator.SetEndTime(40.0);
+            simulator.SetEndTime(38.0);
 
             // Check the correct solution was obtained
             //        for (AbstractCellPopulation<2>::Iterator cell_iter = simulator.rGetCellPopulation().Begin();

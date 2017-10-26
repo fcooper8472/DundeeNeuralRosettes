@@ -142,8 +142,8 @@ void ApicalForce<ELEMENT_DIM,SPACE_DIM>::AddForceContribution(AbstractCellPopula
             apicalendlocation[1]=  nodelocation[1] + 0.5 * length_a * sin(angle_a);
 
             c_vector<double, SPACE_DIM> apical_foot_of_cell;
-            apical_foot_of_cell[0]=0;
-            apical_foot_of_cell[1]=0;
+            apical_foot_of_cell[0]=0.0;
+            apical_foot_of_cell[1]=0.0;
 
 
 
@@ -172,30 +172,30 @@ void ApicalForce<ELEMENT_DIM,SPACE_DIM>::AddForceContribution(AbstractCellPopula
             basalendlocation[0]=  nodelocation[0] - 0.5 * length_a * cos(angle_a);
             basalendlocation[1]=  nodelocation[1] - 0.5 * length_a * sin(angle_a);
 
-            double cell_angle_wrt_origin=atan2(nodelocation[1],nodelocation[0] );
+            double cell_angle_wrt_origin=atan2(basalendlocation[1],basalendlocation[0]);
 
-                       c_vector<double, SPACE_DIM> basal_foot_of_cell;
-                       basal_foot_of_cell[0]=R_rosette*cos(cell_angle_wrt_origin);
-                       basal_foot_of_cell[1]=R_rosette*sin(cell_angle_wrt_origin);
+		   c_vector<double, SPACE_DIM> basal_foot_of_cell;
+		   basal_foot_of_cell[0]=R_rosette*cos(cell_angle_wrt_origin);
+		   basal_foot_of_cell[1]=R_rosette*sin(cell_angle_wrt_origin);
 
-                       double basal_SpringLength= R_rosette-mSpringLength;
-
-
-
-
-
-                       double basal_force_magnitude = mSpringConstant*(norm_2(basalendlocation-basal_foot_of_cell)-basal_SpringLength);
-
-                       c_vector<double, SPACE_DIM> basal_force_direction_a_to_b =(basalendlocation-basal_foot_of_cell)/norm_2(basalendlocation-basal_foot_of_cell) ;
-
-                       c_vector<double, SPACE_DIM> basal_force_a_b = -basal_force_magnitude * basal_force_direction_a_to_b;
+		   double basal_SpringLength= R_rosette-mSpringLength;
 
 
 
 
-                       iter->rGetNodeAttributes()[NA_APPLIED_ANGLE] += cross_product(-basalendlocation+nodelocation, basal_force_a_b);
 
-                       iter->AddAppliedForceContribution(basal_force_a_b);
+		   double basal_force_magnitude = mSpringConstant*(norm_2(basalendlocation-basal_foot_of_cell)-basal_SpringLength);
+
+		   c_vector<double, SPACE_DIM> basal_force_direction_a_to_b =(basalendlocation-basal_foot_of_cell)/norm_2(basalendlocation-basal_foot_of_cell) ;
+
+		   c_vector<double, SPACE_DIM> basal_force_a_b = -basal_force_magnitude * basal_force_direction_a_to_b;
+
+
+
+
+		   iter->rGetNodeAttributes()[NA_APPLIED_ANGLE] += cross_product(-basalendlocation+nodelocation, basal_force_a_b);
+
+		   iter->AddAppliedForceContribution(basal_force_a_b);
 
 
 

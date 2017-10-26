@@ -1,1 +1,2 @@
 TestHelloDundeeNeuralRosettes.hpp
+TestRosetteSimulation.hpp

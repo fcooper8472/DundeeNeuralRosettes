@@ -43,11 +43,15 @@
 # Note that the order in which components are specified does not matter.
 
 # Here we just depend on core components (nothing application-specific).
-find_package(Chaste COMPONENTS cell_based)
+find_package(Chaste COMPONENTS cell_based project_DundeeTypeSixSecretion)
+
+
 
 # Alternatively, to specify a Chaste installation directory use a line like that below.
 # This is needed if your project is not contained in the projects folder within a Chaste source tree.
-#find_package(Chaste COMPONENTS heart crypt PATHS /path/to/chaste-install NO_DEFAULT_PATH)
+# find_package(Chaste COMPONENTS heart crypt PATHS /home/philip/Chaste/ NO_DEFAULT_PATH)
+
+# find_package(Chaste COMPONENTS project_DundeeTypeSixSecretion PATHS /home/philip/Chaste/projects/ NO_DEFAULT_PATH)
 
 # Change the project name in the line below to match the folder this file is in,
 # i.e. the name of your project.
